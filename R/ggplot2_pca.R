@@ -1,15 +1,20 @@
-#### Principal component analysis ####
+#' Title
+#'
+#' @param data (compulsory) a matrix.
+#' @param title (optional) main title of the plot and the name of the file. Default: time stamp.
+#' @param first_pc (optional) component plotted on the x-axis. Default: 1.
+#' @param second_pc (optional) component plotted on the y-axis. Default: 2.
+#' @param samples (optional) vector containing the sample names. Default: column names of data.
+#' @param groups (optional) vector containing the name of the experimental groups (same order as in the columns of data). no default
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' dat <- matrix(rnorm(1200), ncol=6)
+#' ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, groups=rep(c("A", "B"), 3), title="PCA")
 
-## PCA function with ggplot2, from any matrix ##
-# data: compulsory; a matrix
-# title: optional; will be used to construct the main title of the plot and the name of the file; defaults to time stamp
-# first_pc, second_pc; optional: which components do you want to plot. first will go to the x axis, second will go to the y axis; defaults to 1 and 2, respectively.
-# groups: optional; vector that contains the name of the experimental groups (same order as in the columns of data).
-# samples: optional; vector that contains the name of the samples for labeling the points; defaults to the column names of data.
-# run as:
-# pca_ggplot(dat, first_pc=1, second_pc=3, samples=1:6, groups=c(rep("one", 3), rep("two", 3)), title="my first PCA")
-
-pca_ggplot <- function(data, title, first_pc, second_pc, groups, samples){
+ggplot2_pca <- function(data, title, first_pc, second_pc, samples, groups){
 
   # check if ggplot2 is installed; if not, install it
   list.of.packages <- c("ggplot2", "cowplots", "DESeq2")
