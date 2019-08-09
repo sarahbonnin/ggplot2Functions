@@ -2,12 +2,12 @@
 % Please edit documentation in R/ggplot2_pca.R
 \name{ggplot2_pca}
 \alias{ggplot2_pca}
-\title{Title}
+\title{Principal Component Analysis.}
 \usage{
 ggplot2_pca(data, title, first_pc, second_pc, samples, groups)
 }
 \arguments{
-\item{data}{(compulsory) a matrix.}
+\item{data}{(compulsory) either a matrix, a DESeqTransform or a DESeqDataSet object.}
 
 \item{title}{(optional) main title of the plot and the name of the file. Default: time stamp.}
 
@@ -20,8 +20,9 @@ ggplot2_pca(data, title, first_pc, second_pc, samples, groups)
 \item{groups}{(optional) vector containing the name of the experimental groups (same order as in the columns of data). no default}
 }
 \description{
-Title
+Principal Component Analysis.
 }
 \examples{
+dat <- matrix(rnorm(1200), ncol=6)
 ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, groups=rep(c("A", "B"), 3), title="PCA")
 }
