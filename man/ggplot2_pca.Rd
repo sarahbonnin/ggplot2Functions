@@ -19,10 +19,13 @@ ggplot2_pca(data, title, first_pc, second_pc, samples, groups)
 
 \item{groups}{(optional) vector containing the name of the experimental groups (same order as in the columns of data). no default}
 }
+\value{
+a PCA plot
+}
 \description{
 Principal Component Analysis.
 }
 \examples{
 dat <- matrix(rnorm(1200), ncol=6)
-ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, groups=rep(c("A", "B"), 3), title="PCA")
+ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, groups=rep(c("A", "B"), 3), title="test")
 }

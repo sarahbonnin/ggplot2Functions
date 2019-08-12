@@ -12,6 +12,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+biocViews:
 Imports:
+  methods,
+  stats,
+  grDevices,
+  SummarizedExperiment,
+  limma,
   DESeq2,
   ggplot2

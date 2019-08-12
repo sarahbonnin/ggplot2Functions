@@ -9,15 +9,11 @@
 #'
 #' @return a PCA plot
 #' @export
-#' @import DESeq2
-#' @import ggplot2
+#' @import DESeq2 ggplot2
 #'
 #' @examples
 #' dat <- matrix(rnorm(1200), ncol=6)
 #' ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, groups=rep(c("A", "B"), 3), title="test")
-
-## quiets concerns of R CMD check re: the .'s that appear in pipelines
-if(getRversion() >= "2.15.1") utils::globalVariables(c("."))
 
 ggplot2_pca <- function(data, title, first_pc, second_pc, samples, groups){
 
@@ -34,11 +30,11 @@ ggplot2_pca <- function(data, title, first_pc, second_pc, samples, groups){
     stop("Need to input a data argument (matrix)")
 
   # test if data is a matrix or a DESeq2 object; adjust accordingly
-  if(is(data, "DESeqTransform")) data <- DESeq2::assay(data)
-  if(is(data, "DESeqDataSet")) data <- DESeq2::assay(rlog(data))
+  if(methods::is(data, "DESeqTransform")) data <- SummarizedExperiment::assay(data)
+  if(methods::is(data, "DESeqDataSet")) data <- SummarizedExperiment::assay(rlog(data))
 
   # Performs principal component analysis on data
-  pca <- prcomp(t(data))
+  pca <- stats::prcomp(t(data))
   # Retrieve the percentages of variation for each component
   percentVar <- pca$sdev^2 / sum( pca$sdev^2 )
 
@@ -81,7 +77,7 @@ ggplot2_pca <- function(data, title, first_pc, second_pc, samples, groups){
     ggplot2::xlim(xlimits)
 
   # save plot in pdf format
-  pdf(paste0("PCA_", gsub(" ", "_", title), "_PC",first_pc, "_PC", second_pc, ".pdf"), height=7, width=9)
+  grDevices::pdf(paste0("PCA_", gsub(" ", "_", title), "_PC",first_pc, "_PC", second_pc, ".pdf"), height=7, width=9)
   print(p2)
-  dev.off()
+  grDevices::dev.off()
 }
