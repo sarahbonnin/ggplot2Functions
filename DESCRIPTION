@@ -20,4 +20,5 @@ Imports:
   SummarizedExperiment,
   limma,
   DESeq2,
-  ggplot2
+  ggplot2,
+  ggdendro

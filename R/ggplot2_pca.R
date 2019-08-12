@@ -5,17 +5,17 @@
 #' @param first_pc (optional) component plotted on the x-axis. Default: 1.
 #' @param second_pc (optional) component plotted on the y-axis. Default: 2.
 #' @param samples (optional) vector containing the sample names. Default: column names of data.
-#' @param groups (optional) vector containing the name of the experimental groups (same order as in the columns of data). no default
+#' @param expGroups (optional) vector containing the name of the experimental groups (same order as in the columns of data). no default
 #'
-#' @return a PCA plot
+#' @return a PDF file
 #' @export
 #' @import DESeq2 ggplot2
 #'
 #' @examples
 #' dat <- matrix(rnorm(1200), ncol=6)
-#' ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, groups=rep(c("A", "B"), 3), title="test")
+#' ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, expGroups=rep(c("A", "B"), 3), title="test")
 
-ggplot2_pca <- function(data, title, first_pc, second_pc, samples, groups){
+ggplot2_pca <- function(data, title, first_pc, second_pc, samples, expGroups){
 
   # check if ggplot2 is installed; if not, install it
   #list.of.packages <- c("ggplot2", "DESeq2")
@@ -52,15 +52,15 @@ ggplot2_pca <- function(data, title, first_pc, second_pc, samples, groups){
   if(missing(samples)) samples <- colnames(data)
 
   # if groups is not passed, set to NA: the plot will be modified accordingly.
-  if(missing(groups)) groups <- NA
+  if(missing(expGroups)) expGroups <- NA
 
   # Create data frame with principal components (elected or default), sample and group information; Create fist plot layer with or without "groups"
 
-  if(any(is.na(groups))){
+  if(any(is.na(expGroups))){
     d <- data.frame(PC1=pca$x[,first_pc], PC2=pca$x[,second_pc], sample=samples)
     p <- ggplot2::ggplot(data=d, aes(x=PC1, y=PC2, label=sample))
   }else{
-    d <- data.frame(PC1=pca$x[,first_pc], PC2=pca$x[,second_pc], group=groups, sample=samples)
+    d <- data.frame(PC1=pca$x[,first_pc], PC2=pca$x[,second_pc], group=expGroups, sample=samples)
     p <- ggplot2::ggplot(data=d, aes(x=PC1, y=PC2, color=group, label=sample))
   }
 

@@ -4,7 +4,7 @@
 \alias{ggplot2_pca}
 \title{Principal Component Analysis.}
 \usage{
-ggplot2_pca(data, title, first_pc, second_pc, samples, groups)
+ggplot2_pca(data, title, first_pc, second_pc, samples, expGroups)
 }
 \arguments{
 \item{data}{(compulsory) either a matrix, a DESeqTransform or a DESeqDataSet object.}
@@ -17,15 +17,15 @@ ggplot2_pca(data, title, first_pc, second_pc, samples, groups)
 
 \item{samples}{(optional) vector containing the sample names. Default: column names of data.}
 
-\item{groups}{(optional) vector containing the name of the experimental groups (same order as in the columns of data). no default}
+\item{expGroups}{(optional) vector containing the name of the experimental groups (same order as in the columns of data). no default}
 }
 \value{
-a PCA plot
+a PDF file
 }
 \description{
 Principal Component Analysis.
 }
 \examples{
 dat <- matrix(rnorm(1200), ncol=6)
-ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, groups=rep(c("A", "B"), 3), title="test")
+ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, expGroups=rep(c("A", "B"), 3), title="test")
 }
