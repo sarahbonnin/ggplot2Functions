@@ -7,14 +7,17 @@
 #' @param samples (optional) vector containing the sample names. Default: column names of data.
 #' @param groups (optional) vector containing the name of the experimental groups (same order as in the columns of data). no default
 #'
-#' @return
+#' @return a PCA plot
 #' @export
 #' @import DESeq2
 #' @import ggplot2
 #'
 #' @examples
 #' dat <- matrix(rnorm(1200), ncol=6)
-#' ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, groups=rep(c("A", "B"), 3), title="PCA")
+#' ggplot2_pca(dat, first_pc=1, second_pc=3, samples=1:6, groups=rep(c("A", "B"), 3), title="test")
+
+## quiets concerns of R CMD check re: the .'s that appear in pipelines
+if(getRversion() >= "2.15.1") utils::globalVariables(c("."))
 
 ggplot2_pca <- function(data, title, first_pc, second_pc, samples, groups){
 
