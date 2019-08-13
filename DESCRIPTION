@@ -21,4 +21,5 @@ Imports:
   limma,
   DESeq2,
   ggplot2,
-  ggdendro
+  ggdendro,
+  reshape2

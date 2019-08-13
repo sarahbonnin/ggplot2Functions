@@ -2,7 +2,9 @@
 
 export(ggplot2_dendrogram)
 export(ggplot2_density)
+export(ggplot2_dotplot)
 export(ggplot2_pca)
 import(DESeq2)
 import(ggdendro)
 import(ggplot2)
+import(reshape2)

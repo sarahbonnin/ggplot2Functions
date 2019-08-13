@@ -41,15 +41,15 @@ ggplot2_density <- function(data, title){
     ggplot(data2, aes_string(sample)) +
       geom_density() +
       geom_vline(xintercept=xmaxdens, col="red") +
-      annotate(geom="text", x=xmaxdens+0.1, y=median(density(mysample)$y), label=round(xmaxdens, 2), col="red") + ggtitle(paste("density plot for", sample,  title))
+      annotate(geom="text", x=xmaxdens+0.1, y=stats::median(stats::density(mysample)$y), label=base::round(xmaxdens, 2), col="red") +
+      ggtitle(paste("density plot for", sample,  title))
   }
 
   # save plot in pdf format
-  pdf(paste0("Density_", gsub(" ", "_", title), ".pdf"), height=7, width=9)
+  grDevices::pdf(paste0("Density_", gsub(" ", "_", title), ".pdf"), height=7, width=9)
   for(i in 1:ncol(data)){
     print(dens_func(data, colnames(data)[i]))
   }
-  dev.off()
-
+  grDevices::dev.off()
 
 }
