@@ -1,12 +1,5 @@
 #### Dot plot per counts / genes ####
 
-### Dot plot from matrix or DESeq2 object using ggplot2 ###
-# data: compulsory; matrix: each column is a sample. Row names should be gene names!
-# genes: compulsory; vector of gene names (should be found in row names of data)
-# title: optional; defaults to time stamp.
-# groups: optional; vector that contains the name of the experimental groups (same order as in the columns of data).
-# samples: optional; vector that contains the name of the samples for labeling the points; defaults to the column names of data.
-
 #' Title
 #'
 #' @param data (compulsory) matrix: each column is a sample. Row names should be gene names.
